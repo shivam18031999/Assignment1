@@ -55,6 +55,24 @@ const addElements = () => {
 addElements();
 const listArray = document.querySelectorAll("li");
 
+const titleFitter = () => {
+    
+    listArray.forEach((listItem)=>{
+       let str = listItem.children[1].textContent;
+       let newstr
+       console.log(str);
+       if(str.length > 30){
+           newstr = str.slice(0,12)+"..."+ str.slice(str.length-13);
+       }else{
+           newstr = str;
+       }
+       listItem.children[1].textContent = newstr ;
+    });
+}
+
+titleFitter();
+
+
 // Function to unselect a list item and select another item.
 // item1 is the id of item , which we are gonna unselect
 // item2 is the id of item, which we will select
@@ -70,10 +88,8 @@ const changeSelectedItem = (item1 ,item2) => {
             
             listItem.classList.toggle("selected");
             
-            const childImage = listItem.children[0];
-            const childTitle = listItem.children[1];
-            previewImage.setAttribute("src",childImage.src);
-            previewTitle.innerText = childTitle.innerText;
+            previewImage.setAttribute("src",image_data[item2].previewImage);
+            previewTitle.innerText = image_data[item2].title;
         }
    });
 
