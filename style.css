@@ -44,6 +44,7 @@
   width: 100%;
   height: 95%;
   margin: 0.5rem;
+  border-radius: 5px;
 }
 .big-title {
   margin: 1rem;
