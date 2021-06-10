@@ -112,12 +112,20 @@ function checkKey(e) {
 
     if (e.keyCode == '38') {
         let prev = previous;
-        previous = Math.max(prev-1,0); 
+        if(prev == 0){
+            previous = image_data.length -1 ;
+        }else{
+            previous = prev - 1;
+        }
         changeSelectedItem(prev , previous);
     }
     else if (e.keyCode == '40') {
         let prev = previous;
-        previous = Math.min(prev+1, image_data.length-1); 
+        if(prev == image_data.length -1){
+            previous = 0 ;
+        }else{
+            previous = prev + 1;
+        }
         changeSelectedItem(prev , previous);
     }
 }
