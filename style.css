@@ -13,6 +13,7 @@ ul {
   width: 15vw;
   height: 3.5vh;
   padding: 1vh 0.5vw;
+  align-items: center;
 }
 .image {
   width: 15%;
@@ -23,10 +24,11 @@ ul {
 .image-title {
   margin: 0rem;
   width: 60%;
-  font-size: 1vw;
-  padding: 1vh 0.5vw;
+  max-height: 100%;
+  font-size: 18px;
+  padding: 0vh 0.5vw;
   flex: 1;
-  align-content: center;
+
   white-space: nowrap;
   overflow: hidden;
   /* text-overflow: ellipsis; */
@@ -53,4 +55,26 @@ ul {
   margin: 2vh 1vw;
   font-size: 1.5vw;
   text-align: center;
+}
+@media screen and (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    margin-left: 30vw;
+    margin-top: 4vh;
+  }
+  ul {
+    padding: 0.5vh 0.5vw;
+  }
+  .list-element {
+    width: 30vw;
+    height: 5vh;
+  }
+  .image {
+  }
+  .preview {
+    height: 50vh;
+  }
+  .big-image {
+    margin: 0.5vh 0vw;
+  }
 }

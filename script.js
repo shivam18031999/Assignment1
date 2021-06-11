@@ -4,6 +4,7 @@ const previewImage = document.querySelector(".big-image");
 const previewTitle = document.querySelector(".big-title")
 
 
+
 const image_data = [
     {
         "previewImage": "https://images.unsplash.com/photo-1561948955-570b270e7c36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
@@ -42,7 +43,10 @@ const addElements = () => {
         image.className += ( " image" );
 
         const imageTitle = document.createElement("p");
-        imageTitle.innerText = obj.title;        
+
+        const imageTitleInner = document.createElement("div");
+        imageTitleInner.innerText = obj.title;        
+        imageTitle.append(imageTitleInner);
         imageTitle.className += ( " image-title" );      
         
         imageItem.append(image);
@@ -55,18 +59,7 @@ const addElements = () => {
 addElements();
 const listArray = document.querySelectorAll("li");
 
-const stringfitter = () => {
 
-   listArray.forEach((listItem)=>{
-       let str = listItem.children[1].textContent;
-       if(str.length>30){
-           str = str.slice(0,12)+"..."+str.slice(str.length-12);
-       }
-       listItem.children[1].textContent = str;
-   })
-}
-
-stringfitter();
 
 // Function to unselect a list item and select another item.
 // item1 is the id of item , which we are gonna unselect
@@ -103,8 +96,10 @@ const addListner = () =>{
             let id;
             if(e.target.tagName == 'LI'){
                 id = e.target.id;
+            }else if(e.target.tagName == 'DIV'){
+              id = e.target.parentElement.parentElement.id;
             }else{
-              id = e.target.parentElement.id;
+                id = e.target.parentElement.id;
             }
             changeSelectedItem( previous , id );
             previous = parseInt(id) ;
@@ -144,3 +139,51 @@ function checkKey(e) {
 document.onkeydown = checkKey;
 
 
+
+
+const Li=document.querySelector("li p");
+
+const checkString = (innerDiv,smallStr)=>{
+     
+     innerDiv.innerText = smallStr;
+     if(innerDiv.scrollWidth <= innerDiv.clientWidth){     
+        return true;
+     }else{
+         return false;
+     }
+}
+
+const  helper = () => {
+
+
+    listArray.forEach((listItem)=>{
+        
+        let str = image_data[listItem.id].title;
+        const innerDiv = listItem.children[1].children[0];
+        
+        if(checkString(innerDiv,str) === true){
+
+        }else{
+        
+        let len = 0;
+        let newStr ;
+        for(let i=0;i<str.length/2;i++){
+            let smallStr = str.slice(0,i+1) + "..." + str.slice(str.length-(i+1));
+            if(checkString(innerDiv,smallStr) === true){
+                newStr = smallStr;
+            }else{
+                break;
+            }
+        }
+         innerDiv.innerText = newStr;
+
+       }
+        
+    });
+   
+   
+}
+
+helper();
+
+window.onresize = function(){helper()};
