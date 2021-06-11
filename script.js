@@ -107,7 +107,7 @@ const addListner = () =>{
               id = e.target.parentElement.id;
             }
             changeSelectedItem( previous , id );
-            previous = id ;
+            previous = parseInt(id) ;
          });
     });
 }
