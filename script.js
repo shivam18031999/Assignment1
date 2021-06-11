@@ -55,6 +55,18 @@ const addElements = () => {
 addElements();
 const listArray = document.querySelectorAll("li");
 
+const stringfitter = () => {
+
+   listArray.forEach((listItem)=>{
+       let str = listItem.children[1].textContent;
+       if(str.length>30){
+           str = str.slice(0,12)+"..."+str.slice(str.length-12);
+       }
+       listItem.children[1].textContent = str;
+   })
+}
+
+stringfitter();
 
 // Function to unselect a list item and select another item.
 // item1 is the id of item , which we are gonna unselect
