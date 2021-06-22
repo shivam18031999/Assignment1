@@ -10,7 +10,7 @@ ul {
 }
 .list-element {
   display: flex;
-  width: 15vw;
+  width: 17vw;
   height: 50px;
   padding: 1vh 0.5vw;
   margin: 2% 1%;
@@ -18,7 +18,7 @@ ul {
 }
 .image {
   width: 50px;
-  height: 50px;
+  height: 45px;
   border: 1px solid white;
   border-radius: 0.5rem;
 }
@@ -56,10 +56,10 @@ ul {
   font-size: 1.5vw;
   text-align: center;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   .container {
     flex-direction: column;
-    margin-left: 30vw;
+    margin: auto;
     margin-top: 4vh;
   }
   .preview {
@@ -68,6 +68,7 @@ ul {
   }
   ul {
     padding: 0.5vh 0.5vw;
+    margin: auto;
   }
   .list-element {
     width: 40vw;
@@ -77,6 +78,7 @@ ul {
   }
   .preview {
     height: 50vh;
+    margin: auto;
   }
   .big-image {
     margin: 0.5vh 0vw;
