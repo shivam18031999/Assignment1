@@ -11,26 +11,26 @@ ul {
 .list-element {
   display: flex;
   width: 15vw;
-  height: 3.5vh;
+  height: 50px;
   padding: 1vh 0.5vw;
+  margin: 2% 1%;
   align-items: center;
 }
 .image {
-  width: 15%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
   border: 1px solid white;
   border-radius: 0.5rem;
 }
 .image-title {
-  margin: 0rem;
   width: 60%;
-  max-height: 100%;
-  font-size: 18px;
+  font-size: 20px;
   padding: 0vh 0.5vw;
   flex: 1;
-
   white-space: nowrap;
-  overflow: hidden;
+  /* /* white-space: normal; */
+  word-break: break-all;
+  /* overflow: hidden; */
   /* text-overflow: ellipsis; */
 }
 .selected {
@@ -62,14 +62,18 @@ ul {
     margin-left: 30vw;
     margin-top: 4vh;
   }
+  .preview {
+    width: 50vw;
+    height: 90vh;
+  }
   ul {
     padding: 0.5vh 0.5vw;
   }
   .list-element {
-    width: 30vw;
-    height: 5vh;
-  }
-  .image {
+    width: 40vw;
+    height: auto;
+    margin: 1% 1%;
+    padding: 1% 1%;
   }
   .preview {
     height: 50vh;

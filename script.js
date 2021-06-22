@@ -146,12 +146,33 @@ const Li=document.querySelector("li p");
 const checkString = (innerDiv,smallStr)=>{
      
      innerDiv.innerText = smallStr;
+     console.log(smallStr,innerDiv.scrollWidth,innerDiv.clientWidth);
      if(innerDiv.scrollWidth <= innerDiv.clientWidth){     
         return true;
      }else{
          return false;
      }
 }
+
+const findFitLength = (innerDiv , str) => {
+
+    if(checkString(innerDiv,str) === true){
+       return str;
+    }else{
+    
+    let len = 0;
+    let newStr ;
+    for(let i=0;i<str.length/2;i++){
+        let smallStr = str.slice(0,i+1) + "..." + str.slice(str.length-(i+1));
+        if(checkString(innerDiv,smallStr) === true){
+            newStr = smallStr;
+        }else{
+            break;
+        }
+    }
+        return newStr;
+    }
+};
 
 const  helper = () => {
 
@@ -160,26 +181,56 @@ const  helper = () => {
         
         let str = image_data[listItem.id].title;
         const innerDiv = listItem.children[1].children[0];
-        
-        if(checkString(innerDiv,str) === true){
+        innerDiv.style.whiteSpace = "nowrap";
+         let start = 0;
+         let count = 1;
 
-        }else{
-        
-        let len = 0;
-        let newStr ;
-        for(let i=0;i<str.length/2;i++){
-            let smallStr = str.slice(0,i+1) + "..." + str.slice(str.length-(i+1));
-            if(checkString(innerDiv,smallStr) === true){
-                newStr = smallStr;
-            }else{
-                break;
+         for(let i = 0 ; i < str.length ;i++){
+             let smallStr = str.slice(start,i+1);
+             if(checkString(innerDiv,smallStr) === false){
+                 count++;
+                 start = i;
+             }
+         }
+         let finalStr ;
+         if(count <= 3){
+             finalStr = str;
+         }else{
+              
+            let firstLineEnd, thirdLineStart;
+            for(let i = 0;i<str.length;i++){
+                let smallStr = str.slice(0,i+1);
+               if(checkString(innerDiv,smallStr) === true){
+                 firstLineEnd = i;
+               }else{
+                   break;
+               }
             }
-        }
-         innerDiv.innerText = newStr;
+            for(let i=str.length-1;i>=0;i--){
+                let smallStr = str.slice(i,str.length);
+                if(checkString(innerDiv,smallStr) === true){
+                    thirdLineStart = i;
+                }else{
+                    break;
+                }
+            }
+            let remStr = str.slice(firstLineEnd,thirdLineStart);
+            let remStrFit = findFitLength(innerDiv,remStr);
+            finalStr = str.slice(0,firstLineEnd+1) + remStrFit + str.slice(thirdLineStart,str.length);
 
+         }
+         innerDiv.style.whiteSpace = "normal";
+         innerDiv.innerText = finalStr;
+         
+        //  console.log(str,count);
+        //  if(count <= 3){
+        //      innerDiv.innerText = str;
+        //  }else{
+        //      innerDiv.innerText = "";
+        //  }
        }
         
-    });
+    );
    
    
 }
