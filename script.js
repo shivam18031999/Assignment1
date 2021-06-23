@@ -189,7 +189,7 @@ const  helper = () => {
              let smallStr = str.slice(start,i+1);
              if(checkString(innerDiv,smallStr) === false){
                  count++;
-                 start = i;
+                 start = i-1;
              }
          }
          let finalStr ;
@@ -201,7 +201,7 @@ const  helper = () => {
             for(let i = 0;i<str.length;i++){
                 let smallStr = str.slice(0,i+1);
                if(checkString(innerDiv,smallStr) === true){
-                 firstLineEnd = i;
+                 firstLineEnd = i-1;
                }else{
                    break;
                }
@@ -209,7 +209,7 @@ const  helper = () => {
             for(let i=str.length-1;i>=0;i--){
                 let smallStr = str.slice(i,str.length);
                 if(checkString(innerDiv,smallStr) === true){
-                    thirdLineStart = i;
+                    thirdLineStart = i+1;
                 }else{
                     break;
                 }
